@@ -352,7 +352,7 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "Sp_muñeco",
+          "name": "Sp_heroe",
           "persistentUuid": "b8b9e601-1e6d-4b75-bf7d-4bdca566e820",
           "width": 0,
           "x": 587,
@@ -692,7 +692,7 @@
           "height": 0,
           "keepRatio": true,
           "layer": "",
-          "name": "Sp_muñeco2",
+          "name": "Sp_heroe2",
           "persistentUuid": "8bf1f151-a0ca-451d-9d41-f9cef8f6ee09",
           "width": 0,
           "x": 688,
@@ -757,7 +757,7 @@
         {
           "adaptCollisionMaskAutomatically": true,
           "assetStoreId": "",
-          "name": "Sp_muñeco",
+          "name": "Sp_heroe",
           "persistentUuid": "e9cbd7cc-f075-4641-917b-659c3aba102d",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -765,6 +765,7 @@
           "effects": [],
           "behaviors": [
             {
+              "isFolded": true,
               "name": "FireBullet",
               "type": "FireBullet::FireBullet",
               "FireCooldown": 0.5,
@@ -811,8 +812,6 @@
               "StickMode": "Analog"
             },
             {
-              "name": "TopDownMovement",
-              "type": "TopDownMovementBehavior::TopDownMovementBehavior",
               "acceleration": 400,
               "allowDiagonals": true,
               "angleOffset": 0,
@@ -822,7 +821,9 @@
               "ignoreDefaultControls": false,
               "maxSpeed": 200,
               "movementAngleOffset": 0,
+              "name": "TopDownMovement",
               "rotateObject": true,
+              "type": "TopDownMovementBehavior::TopDownMovementBehavior",
               "useLegacyTurnBack": false,
               "viewpoint": "TopDown"
             }
@@ -1441,7 +1442,7 @@
         {
           "adaptCollisionMaskAutomatically": true,
           "assetStoreId": "",
-          "name": "Sp_muñeco2",
+          "name": "Sp_heroe2",
           "persistentUuid": "381c7cea-29fe-4190-906c-ef4a9777f4c0",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -1543,10 +1544,10 @@
             "objectName": "Mask_collision"
           },
           {
-            "objectName": "Sp_muñeco"
+            "objectName": "Sp_heroe"
           },
           {
-            "objectName": "Sp_muñeco2"
+            "objectName": "Sp_heroe2"
           },
           {
             "objectName": "Mapa_interno_farm"
@@ -1583,6 +1584,73 @@
       "events": [
         {
           "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "SceneJustBegins"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Multiplayer::CurrentPlayerNumber"
+                  },
+                  "parameters": [
+                    "=",
+                    "1"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Multiplayer::MultiplayerObjectBehavior::TakeObjectOwnership"
+                  },
+                  "parameters": [
+                    "Sp_heroe",
+                    "MultiplayerObject"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Multiplayer::CurrentPlayerNumber"
+                  },
+                  "parameters": [
+                    "=",
+                    "2"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Multiplayer::MultiplayerObjectBehavior::TakeObjectOwnership"
+                  },
+                  "parameters": [
+                    "Sp_heroe2",
+                    "MultiplayerObject"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "disabled": true,
+          "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
             {
@@ -1593,8 +1661,8 @@
                 "Sp_bruja_piruja",
                 "Pathfinding",
                 "",
-                "Sp_muñeco.X()",
-                "Sp_muñeco.Y()"
+                "Sp_heroe.X()",
+                "Sp_heroe.Y()"
               ]
             }
           ]
@@ -1608,7 +1676,7 @@
                 "value": "SeparateFromObjects"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Mask_collision",
                 ""
               ]
@@ -1635,7 +1703,7 @@
               },
               "parameters": [
                 "",
-                "Sp_muñeco",
+                "Sp_heroe",
                 "",
                 "",
                 ""
@@ -1647,7 +1715,7 @@
               },
               "parameters": [
                 "",
-                "Sp_muñeco",
+                "Sp_heroe",
                 "",
                 "\"terreno\"",
                 ""
@@ -1675,7 +1743,7 @@
               },
               "parameters": [
                 "",
-                "Sp_muñeco2",
+                "Sp_heroe2",
                 "",
                 "",
                 ""
@@ -1687,7 +1755,7 @@
               },
               "parameters": [
                 "",
-                "Sp_muñeco2",
+                "Sp_heroe2",
                 "",
                 "\"terreno\"",
                 ""
@@ -1703,7 +1771,7 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Mapa_interno_edificios",
                 "",
                 "",
@@ -1717,7 +1785,7 @@
                 "value": "SeparateFromObjects"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Mapa_interno_edificios",
                 ""
               ]
@@ -1732,7 +1800,7 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Mapa_interno_farm",
                 "",
                 "",
@@ -1746,7 +1814,7 @@
                 "value": "SeparateFromObjects"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Mapa_interno_farm",
                 ""
               ]
@@ -1772,12 +1840,12 @@
                 "value": "FireBullet::FireBullet::Fire"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "FireBullet",
-                "Sp_muñeco.PointX(\"Disparo\")",
-                "Sp_muñeco.PointY(\"Disparo\")",
+                "Sp_heroe.PointX(\"Disparo\")",
+                "Sp_heroe.PointY(\"Disparo\")",
                 "Sp_balaheroe",
-                "Sp_muñeco.Angle()",
+                "Sp_heroe.Angle()",
                 "200",
                 ""
               ]
@@ -1792,7 +1860,7 @@
                 "value": "Distance"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Sp_sheriff",
                 "300",
                 ""
@@ -1810,7 +1878,7 @@
                 "Sp_sheriff.X()",
                 "Sp_sheriff.Y()",
                 "Sp_balaenemigo",
-                "Sp_muñeco",
+                "Sp_heroe",
                 "200",
                 ""
               ]
@@ -1825,7 +1893,7 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Gru_enemies",
                 "",
                 "",
@@ -1839,7 +1907,7 @@
                 "value": "Delete"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 ""
               ]
             },
@@ -1887,7 +1955,7 @@
                   },
                   "parameters": [
                     "",
-                    "Sp_muñeco",
+                    "Sp_heroe",
                     "587",
                     "337",
                     ""
@@ -1936,7 +2004,7 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "Sp_muñeco",
+                "Sp_heroe",
                 "Sp_uvas",
                 "",
                 "",
@@ -2031,76 +2099,6 @@
                 "Text",
                 "=",
                 "\"Puntos: \" + Var_puntos"
-              ]
-            }
-          ]
-        },
-        {
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "value": "SceneJustBegins"
-              },
-              "parameters": [
-                ""
-              ]
-            }
-          ],
-          "actions": [],
-          "events": [
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "Multiplayer::CurrentPlayerNumber"
-                  },
-                  "parameters": [
-                    "=",
-                    "1"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Multiplayer::MultiplayerObjectBehavior::EnableBehaviorSynchronization"
-                  },
-                  "parameters": [
-                    "Sp_muñeco2",
-                    "MultiplayerObject",
-                    "TopDownGamepadMapper",
-                    ""
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "value": "Multiplayer::CurrentPlayerNumber"
-                  },
-                  "parameters": [
-                    "=",
-                    "2"
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "value": "Multiplayer::MultiplayerObjectBehavior::EnableBehaviorSynchronization"
-                  },
-                  "parameters": [
-                    "Sp_muñeco",
-                    "MultiplayerObject",
-                    "TopDownGamepadMapper",
-                    ""
-                  ]
-                }
               ]
             }
           ]
@@ -2445,7 +2443,20 @@
               "parameters": [
                 ""
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "Multiplayer::HasLobbyGameJustStarted"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
             {
               "type": {
                 "value": "Scene"
